@@ -210,9 +210,6 @@ jobs:
             # Overwrite the ATTinyCore release version with the platform from the local path
             - source-path: avr
               name: ${{ env.platform-name }}
-          libraries: |
-            # The sketches don't have any external library dependencies, so just define an empty array
-            -
           verbose: false
           enable-deltas-report: true
           enable-warnings-report: true
