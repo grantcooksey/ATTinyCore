@@ -44,14 +44,12 @@ jobs:
         - avr/libraries/tinyNeoPixel_Static/examples/buttoncycler
         - avr/libraries/tinyNeoPixel_Static/examples/strandtest
         - avr/extras/ci/test_sketches_4k/serial_test
-        ${{ env.available-flash-2kB-sketch-paths }}
       available-flash-8kB-sketch-paths: |
         - avr/libraries/SPI/examples/BarometricPressureSensor
         - avr/libraries/SoftwareSerial/examples/TwoPortReceive
         - avr/libraries/Wire/examples/SFRRanger_reader
         - avr/libraries/tinyNeoPixel/examples/RGBWstrandtest
         # - avr/extras/CompileTestSketches/test_analog_read
-        ${{ env.available-flash-4kB-sketch-paths }}
 
     strategy:
       fail-fast: false
