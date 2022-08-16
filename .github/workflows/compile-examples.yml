@@ -195,17 +195,15 @@ jobs:
 
       - name: Build sketch-paths
         run: >
-          echo "sketch_paths=\"$(
-            if [ ${{ matrix.device.available-flash-kB }} -ge 8 ];
-            then
-              echo '${{ env.available-flash-8kB-sketch-paths }}${{ env.available-flash-4kB-sketch-paths }}${{ env.available-flash-2kB-sketch-paths }}'
-            elif [ ${{ matrix.device.available-flash-kB }} -ge 4 ]
-            then
-              echo '${{ env.available-flash-4kB-sketch-paths }}${{ env.available-flash-2kB-sketch-paths }}'
-            else
-              echo '${{ env.available-flash-2kB-sketch-paths }}'
-            fi
-          )\"" >> $GITHUB_ENV
+          if [ ${{ matrix.device.available-flash-kB }} -ge 8 ];
+          then
+            echo 'sketch_path=${{ env.available-flash-8kB-sketch-paths }}${{ env.available-flash-4kB-sketch-paths }}${{ env.available-flash-2kB-sketch-paths }}' >> $GITHUB_ENV
+          elif [ ${{ matrix.device.available-flash-kB }} -ge 4 ]
+          then
+            echo 'sketch_path=${{ env.available-flash-4kB-sketch-paths }}${{ env.available-flash-2kB-sketch-paths }}' >> $GITHUB_ENV
+          else
+            echo 'sketch_path=${{ env.available-flash-2kB-sketch-paths }}' >> $GITHUB_ENV
+          fi
 
       # See: https://github.com/arduino/compile-sketches/README.md
 
