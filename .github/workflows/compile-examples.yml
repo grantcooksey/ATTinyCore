@@ -29,13 +29,9 @@ jobs:
     env:
       platform-name: ATTinyCore:avr
 
-      available-flash-8kB-plus-true-sketch-paths: |
-        - avr/libraries/SPI/examples/BarometricPressureSensor
-        - avr/libraries/SoftwareSerial/examples/TwoPortReceive
-        - avr/libraries/Wire/examples/SFRRanger_reader
-        - avr/libraries/tinyNeoPixel/examples/RGBWstrandtest
-        - avr/extras/CompileTestSketches/test_analog_read
-      available-flash-4kB-plus-true-sketch-paths: |
+      available-flash-2kB-sketch-paths: |
+        - avr/extras/ci/test_sketches_2k/basic_test
+      available-flash-4kB-sketch-paths: |
         - avr/libraries/EEPROM/examples/eeprom_crc
         - avr/libraries/EEPROM/examples/eeprom_put
         - avr/libraries/EEPROM/examples/eeprom_read
@@ -48,8 +44,14 @@ jobs:
         - avr/libraries/tinyNeoPixel_Static/examples/buttoncycler
         - avr/libraries/tinyNeoPixel_Static/examples/strandtest
         - avr/extras/ci/test_sketches_4k/serial_test
-      available-flash-2kB-plus-true-sketch-paths: |
-        - avr/extras/ci/test_sketches_2k/basic_test
+        ${{ env.available-flash-2kB-sketch-paths }}
+      available-flash-8kB-sketch-paths: |
+        - avr/libraries/SPI/examples/BarometricPressureSensor
+        - avr/libraries/SoftwareSerial/examples/TwoPortReceive
+        - avr/libraries/Wire/examples/SFRRanger_reader
+        - avr/libraries/tinyNeoPixel/examples/RGBWstrandtest
+        # - avr/extras/CompileTestSketches/test_analog_read
+        ${{ env.available-flash-4kB-sketch-paths }}
 
     strategy:
       fail-fast: false
@@ -193,7 +195,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # - name: Build fqdn and sketch-paths
+      - name: Build sketch-paths
+        run: >
+          echo "sketch_paths=$(
+            if [ ${{ matrix.device.available-flash-kB }} -ge 8 ];
+            then
+              echo '${{ env.available-flash-8kB-sketch-paths }}'
+            elif [ matrix.device.available-flash-kB -ge 4 ]
+            then
+              echo '${{ env.available-flash-4kB-sketch-paths }}'
+            else
+              echo '${{ env.available-flash-2kB-sketch-paths }}'
+            fi
+          )" >> $GITHUB_ENV
 
       # See: https://github.com/arduino/compile-sketches/README.md
 
@@ -202,12 +216,7 @@ jobs:
         with:
           fqbn: ${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m${{ matrix.soft-serial }}
           sketch-paths: |
-            # It's necessary to jump through some hoops to dynamically generate the env object keys to define the non-universal sketch paths
-            # https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions#format
-            # ${{ env[format('available-flash-8kB-plus-{0}-sketch-paths', matrix.device.available-flash-kB >= 7.5)] }}
-            # ${{ env[format('available-flash-4kB-plus-{0}-sketch-paths', matrix.device.available-flash-kB >= 4)] }}
-            # ${{ env[format('available-flash-2kB-plus-{0}-sketch-paths', matrix.device.available-flash-kB >= 2)] }}
-            ${{ env.available-flash-8kB-plus-true-sketch-paths }}
+            ${{ env.sketch_paths }}
           platforms: |
             # Install ATTinyCore via Boards Manager for the toolchain
             - source-url: http://drazzy.com/package_drazzy.com_index.json
