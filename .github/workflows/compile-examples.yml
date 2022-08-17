@@ -29,9 +29,11 @@ jobs:
     env:
       platform-name: ATTinyCore:avr
 
-      available-flash-2kB-sketch-paths: |
+      # The "-1" postfix is a hack to with Github action expressions. We need to select a list of
+      # sketch paths based on a conditional and Booleans in Github actions are converted to either 1 or 0.
+      available-flash-2kB-sketch-paths-1: |
         - avr/extras/ci/test_sketches_2k/basic_test
-      available-flash-4kB-sketch-paths: |
+      available-flash-4kB-sketch-paths-1: |
         - avr/libraries/EEPROM/examples/eeprom_crc
         - avr/libraries/EEPROM/examples/eeprom_put
         - avr/libraries/EEPROM/examples/eeprom_read
@@ -44,7 +46,7 @@ jobs:
         - avr/libraries/tinyNeoPixel_Static/examples/buttoncycler
         - avr/libraries/tinyNeoPixel_Static/examples/strandtest
         - avr/extras/ci/test_sketches_4k/test_serial
-      available-flash-8kB-sketch-paths: |
+      available-flash-8kB-sketch-paths-1: |
         - avr/libraries/SPI/examples/BarometricPressureSensor
         - avr/libraries/SoftwareSerial/examples/TwoPortReceive
         - avr/libraries/Wire/examples/SFRRanger_reader
@@ -175,10 +177,10 @@ jobs:
           export job_fqbn=${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m
           echo "job_fqbn=$job_fqbn" >> $GITHUB_ENV
 
-      - name: Debug
-        run: |
-          echo "format: ${{ format('available-flash-{0}kB-sketch-paths', matrix.device.available-flash-kB) }}"
-          echo "env: ${{ env[format('available-flash-{0}kB-sketch-paths', matrix.device.available-flash-kB)] }}"
+      # - name: Debug
+      #   run: |
+      #     echo "format: ${{ format('available-flash-{0}kB-sketch-paths', matrix.device.available-flash-kB) }}"
+      #     echo "env: ${{ env[format('available-flash-{0}kB-sketch-paths', matrix.device.available-flash-kB)] }}"
 
       # See: https://github.com/arduino/compile-sketches/README.md
       - name: Compile examples >= 8kb
@@ -187,9 +189,9 @@ jobs:
         with:
           fqbn: ${{ env.job_fqbn }}
           sketch-paths: |
-            ${{ env.available-flash-8kB-sketch-paths }}
-            ${{ env.available-flash-4kB-sketch-paths }}
-            ${{ env.available-flash-2kB-sketch-paths }}
+            ${{ env[format('available-flash-8kB-sketch-paths-{0}', matrix.device.available-flash-kB >= 7.5)] }}
+            ${{ env[format('available-flash-4kB-sketch-paths-{0}', matrix.device.available-flash-kB >= 4)] }}
+            ${{ env[format('available-flash-2kB-sketch-paths-{0}', matrix.device.available-flash-kB >= 2)] }}
           platforms: |
             # Install ATTinyCore via Boards Manager for the toolchain
             - source-url: http://drazzy.com/package_drazzy.com_index.json
