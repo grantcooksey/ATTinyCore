@@ -171,10 +171,10 @@ jobs:
             device:
               - name: attiny828
                 available-flash-kB: 8
-          - soft-serial: ""
-            device:
-              - name: attinyx4:chip=84
-                available-flash-kB: 8
+          # - soft-serial: ""
+          - device:
+            - name: attinyx4:chip=84
+              available-flash-kB: 8
           - soft-serial: ""
             device:
               - name: attinyx4:chip=44
