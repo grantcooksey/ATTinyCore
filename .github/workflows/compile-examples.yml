@@ -84,9 +84,9 @@ jobs:
           # - name: attinyx41:chip=441
           #   available-flash-kB: 4
           #   soft-serial: ""
-          # - name: attinyx5:chip=85
-          #   available-flash-kB: 8
-          #   soft-serial: softserial=enable
+          - name: attinyx5:chip=85
+            available-flash-kB: 8
+            soft-serial: softserial=enable
           # - name: attinyx5:chip=85
           #   available-flash-kB: 8
           #   soft-serial: softserial=txonly
