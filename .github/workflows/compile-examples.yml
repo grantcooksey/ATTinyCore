@@ -259,13 +259,13 @@ jobs:
         if: ${{ matrix.soft-serial != 0 }}
         run: |
           export job_fqbn=${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m,${{ matrix.soft-serial }}
-          echo "::set-env name=job_fqbn::$job_fqbn"
+          echo "job_fqbn=$job_fqbn" >> $GITHUB_ENV
 
       - name: Build fqbn without soft serial
         if: ${{ matrix.soft-serial == 0}}
         run: |
           export job_fqbn=${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m
-          echo "::set-env name=job_fqbn::$job_fqbn"
+          echo "job_fqbn=$job_fqbn" >> $GITHUB_ENV
 
       - name: debug env
         run: >
