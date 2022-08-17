@@ -31,9 +31,9 @@ jobs:
 
       # The "-1" postfix is a hack to with Github action expressions. We need to select a list of
       # sketch paths based on a conditional and Booleans in Github actions are converted to either 1 or 0.
-      available-flash-2kB-sketch-paths-1: |
+      available-flash-2kB-sketch-paths-true: |
         - avr/extras/ci/test_sketches_2k/basic_test
-      available-flash-4kB-sketch-paths-1: |
+      available-flash-4kB-sketch-paths-true: |
         - avr/libraries/EEPROM/examples/eeprom_crc
         - avr/libraries/EEPROM/examples/eeprom_put
         - avr/libraries/EEPROM/examples/eeprom_read
@@ -46,7 +46,7 @@ jobs:
         - avr/libraries/tinyNeoPixel_Static/examples/buttoncycler
         - avr/libraries/tinyNeoPixel_Static/examples/strandtest
         - avr/extras/ci/test_sketches_4k/test_serial
-      available-flash-8kB-sketch-paths-1: |
+      available-flash-8kB-sketch-paths-true: |
         - avr/libraries/SPI/examples/BarometricPressureSensor
         - avr/libraries/SoftwareSerial/examples/TwoPortReceive
         - avr/libraries/Wire/examples/SFRRanger_reader
