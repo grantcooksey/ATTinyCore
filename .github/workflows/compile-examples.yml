@@ -58,171 +58,106 @@ jobs:
         device:
           - name: attinyx4:chip=84
             available-flash-kB: 8
-          # - name: attinyx4:chip=84
-          #   available-flash-kB: 8
-          # - name: attinyx4:chip=44
-          #   available-flash-kB: 4
-          # - name: attinyx4:chip=24
-          #   available-flash-kB: 2
-          # - name: attinyx41:chip=841
-          #   available-flash-kB: 8
-          # - name: attinyx41:chip=441
-          #   available-flash-kB: 4
-          # - name: attinyx5:chip=85
-          #   available-flash-kB: 8
-          # - name: attinyx5:chip=45
-          #   available-flash-kB: 4
-          # - name: attinyx5:chip=25
-          #   available-flash-kB: 2
-          # - name: attinyx61:chip=861
-          #   available-flash-kB: 8
-          # - name: attinyx61:chip=461
-          #   available-flash-kB: 4
-          # - name: attinyx61:chip=261
-          #   available-flash-kB: 2
-          # - name: attinyx7:chip=167
-          #   available-flash-kB: 16
-          # - name: attinyx7:chip=87
-          #   available-flash-kB: 8
-          # - name: attinyx8:chip=88
-          #   available-flash-kB: 8
-          # - name: attinyx8:chip=48
-          #   available-flash-kB: 4
-          # - name: attiny1634
-          #   available-flash-kB: 16
-          # - name: attinyx313:chip=4313
-          #   available-flash-kB: 4
-          # - name: attinyx313:chip=2313a
-          #   available-flash-kB: 2
-          # - name: attiny828
-          #   available-flash-kB: 8
-          # - name: attiny43u
-          #   available-flash-kB: 4
-          # - name: attiny26
-          #   available-flash-kB: 2
-        soft-serial:
-          - ""
-          - softserial=enable
-          - softserial=txonly
-
-        # Filter out these matrix combinations
-        exclude:
-          # - soft-serial: softserial=enable
-          #   device:
-          #     - name: attinyx41:chip=841
-          #       available-flash-kB: 8
-          # - soft-serial: softserial=txonly
-          #   device:
-          #     - name: attinyx41:chip=841
-          #       available-flash-kB: 8
-          # - soft-serial: softserial=enable
-          #   device:
-          #     - name: attinyx41:chip=441
-          #       available-flash-kB: 4
-          # - soft-serial: softserial=txonly
-          #   device:
-          #     - name: attinyx41:chip=441
-          #       available-flash-kB: 4
-          # - soft-serial: softserial=enable
-          #   device:
-          #     - name: attinyx7:chip=167
-          #       available-flash-kB: 16
-          # - soft-serial: softserial=txonly
-          #   device:
-          #     - name: attinyx7:chip=167
-          #       available-flash-kB: 16
-          # - soft-serial: softserial=enable
-          #   device:
-          #     - name: attinyx7:chip=87
-          #       available-flash-kB: 8
-          # - soft-serial: softserial=txonly
-          #   device:
-          #     - name: attinyx7:chip=87
-          #       available-flash-kB: 8
-          # - soft-serial: softserial=enable
-          #   device:
-          #     - name: attinyx313:chip=4313
-          #       available-flash-kB: 4
-          # - soft-serial: softserial=txonly
-          #   device:
-          #     - name: attinyx313:chip=4313
-          #       available-flash-kB: 4
-          # - soft-serial: softserial=enable
-          #   device:
-          #     - name: attinyx313:chip=2313a
-          #       available-flash-kB: 2
-          # - soft-serial: softserial=txonly
-          #   device:
-          #     - name: attinyx313:chip=2313a
-          #       available-flash-kB: 2
-          # - soft-serial: softserial=enable
-          #   device:
-          #     - name: attiny1634
-          #       available-flash-kB: 16
-          # - soft-serial: softserial=txonly
-          #   device:
-          #     - name: attiny1634
-          #       available-flash-kB: 16
-          # - soft-serial: softserial=enable
-          #   device:
-          #     - name: attiny828
-          #       available-flash-kB: 8
-          # - soft-serial: softserial=txonly
-          #   device:
-          #     - name: attiny828
-          #       available-flash-kB: 8
-          - device:
-            - name: attinyx4:chip=84
-              available-flash-kB: 8
-            # soft-serial:
-          # - soft-serial: ""
-          #   device:
-          #     - name: attinyx4:chip=44
-          #       available-flash-kB: 4
-          # - soft-serial: ""
-          #   device:
-          #     - name: attinyx4:chip=24
-          #       available-flash-kB: 2
-          # - soft-serial: ""
-          #   device:
-          #     - name: attinyx5:chip=85
-          #       available-flash-kB: 8
-          # - soft-serial: ""
-          #   device:
-          #     - name: attinyx5:chip=45
-          #       available-flash-kB: 4
-          # - soft-serial: ""
-          #   device:
-          #     - name: attinyx5:chip=25
-          #       available-flash-kB: 2
-          # - soft-serial: ""
-          #   device:
-          #     - name: attinyx61:chip=861
-          #       available-flash-kB: 8
-          # - soft-serial: ""
-          #   device:
-          #     - name: attinyx61:chip=461
-          #       available-flash-kB: 4
-          # - soft-serial: ""
-          #   device:
-          #     - name: attinyx61:chip=261
-          #       available-flash-kB: 2
-          # - soft-serial: ""
-          #   device:
-          #     - name: attinyx8:chip=88
-          #       available-flash-kB: 8
-          # - soft-serial: ""
-          #   device:
-          #     - name: attinyx8:chip=48
-          #       available-flash-kB: 4
-          # - soft-serial: ""
-          #   device:
-          #     - name: attiny43u
-          #       available-flash-kB: 4
-          # - soft-serial: ""
-          #   device:
-          #     - name: attiny26
-          #       available-flash-kB: 2
+            soft-serial: softserial=enable
+          - name: attinyx4:chip=84
+            available-flash-kB: 8
+            soft-serial: softserial=txonly
+          - name: attinyx4:chip=44
+            available-flash-kB: 4
+            soft-serial: softserial=enable
+          - name: attinyx4:chip=44
+            available-flash-kB: 4
+            soft-serial: softserial=txonly
+          - name: attinyx4:chip=24
+            available-flash-kB: 2
+            soft-serial: softserial=enable
+          - name: attinyx4:chip=24
+            available-flash-kB: 2
+            soft-serial: softserial=txonly
+          - name: attinyx41:chip=841
+            available-flash-kB: 8
+            soft-serial: ""
+          - name: attinyx41:chip=441
+            available-flash-kB: 4
+            soft-serial: ""
+          - name: attinyx5:chip=85
+            available-flash-kB: 8
+            soft-serial: softserial=enable
+          - name: attinyx5:chip=85
+            available-flash-kB: 8
+            soft-serial: softserial=txonly
+          - name: attinyx5:chip=45
+            available-flash-kB: 4
+            soft-serial: softserial=enable
+          - name: attinyx5:chip=45
+            available-flash-kB: 4
+            soft-serial: softserial=txonly
+          - name: attinyx5:chip=25
+            available-flash-kB: 2
+            soft-serial: softserial=enable
+          - name: attinyx5:chip=25
+            available-flash-kB: 2
+            soft-serial: softserial=txonly
+          - name: attinyx61:chip=861
+            available-flash-kB: 8
+            soft-serial: softserial=enable
+          - name: attinyx61:chip=861
+            available-flash-kB: 8
+            soft-serial: softserial=txonly
+          - name: attinyx61:chip=461
+            available-flash-kB: 4
+            soft-serial: softserial=enable
+          - name: attinyx61:chip=461
+            available-flash-kB: 4
+            soft-serial: softserial=txonly
+          - name: attinyx61:chip=261
+            available-flash-kB: 2
+            soft-serial: softserial=enable
+          - name: attinyx61:chip=261
+            available-flash-kB: 2
+            soft-serial: softserial=txonly
+          - name: attinyx7:chip=167
+            available-flash-kB: 16
+            soft-serial: ""
+          - name: attinyx7:chip=87
+            available-flash-kB: 8
+            soft-serial: ""
+          - name: attinyx8:chip=88
+            available-flash-kB: 8
+            soft-serial: softserial=enable
+          - name: attinyx8:chip=88
+            available-flash-kB: 8
+            soft-serial: softserial=txonly
+          - name: attinyx8:chip=48
+            available-flash-kB: 4
+            soft-serial: softserial=enable
+          - name: attinyx8:chip=48
+            available-flash-kB: 4
+            soft-serial: softserial=txonly
+          - name: attiny1634
+            available-flash-kB: 16
+            soft-serial: ""
+          - name: attinyx313:chip=4313
+            available-flash-kB: 4
+            soft-serial: ""
+          - name: attinyx313:chip=2313a
+            available-flash-kB: 2
+            soft-serial: ""
+          - name: attiny828
+            available-flash-kB: 8
+            soft-serial: ""
+          - name: attiny43u
+            available-flash-kB: 4
+            soft-serial: softserial=enable
+          - name: attiny43u
+            available-flash-kB: 4
+            soft-serial: softserial=txonly
+          - name: attiny26
+            available-flash-kB: 2
+            soft-serial: softserial=enable
+          - name: attiny26
+            available-flash-kB: 2
+            soft-serial: softserial=txonly
 
     steps:
       - name: Checkout repository
@@ -256,13 +191,13 @@ jobs:
       #     echo "sketch paths: $job_sketch_paths"
 
       - name: Build fqbn with soft serial
-        if: ${{ matrix.soft-serial != 0 }}
+        if: ${{ matrix.device.soft-serial != 0 }}
         run: |
-          export job_fqbn=${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m,${{ matrix.soft-serial }}
+          export job_fqbn=${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m,${{ matrix.device.soft-serial }}
           echo "job_fqbn=$job_fqbn" >> $GITHUB_ENV
 
       - name: Build fqbn without soft serial
-        if: ${{ matrix.soft-serial == 0}}
+        if: ${{ matrix.device.soft-serial == 0}}
         run: |
           export job_fqbn=${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m
           echo "job_fqbn=$job_fqbn" >> $GITHUB_ENV
