@@ -271,7 +271,9 @@ jobs:
 
       # See: https://github.com/arduino/compile-sketches/README.md
 
-      - name:
+      - name: debug env
+        run: >
+          echo ${{ env.job_fqbn }}
 
       - name: Compile examples (all default)
         uses: arduino/compile-sketches@main
