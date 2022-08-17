@@ -200,7 +200,7 @@ jobs:
             ${{ env.available-flash-8kB-sketch-paths }}
             ${{ env.available-flash-4kB-sketch-paths }}
             ${{ env.available-flash-2kB-sketch-paths }}
-
+        run: echo 'sketch path: $sketch_path'
       # See: https://github.com/arduino/compile-sketches/README.md
 
       - name: Compile examples (all default)
