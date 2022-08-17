@@ -229,7 +229,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build sketch-paths >= 8kb
-        if: ${{ matrix.device.available-flash-kB >= 7.5 }}
+        if: ${{ matrix.device.available-flash-kB >= 8 }}
         env:
           job_sketch_paths: |
             ${{ env.available-flash-8kB-sketch-paths }}
@@ -237,9 +237,10 @@ jobs:
             ${{ env.available-flash-2kB-sketch-paths }}
         run: >
           echo "sketch paths: $job_sketch_paths"
+          echo "job_sketch_paths=$job_sketch_paths" >> $GITHUB_ENV
 
-      - name: Build sketch-paths >= 4kb
-        if: ${{ matrix.device.available-flash-kB >= 4 }}
+      - name: Build sketch-paths == 4kb
+        if: ${{ matrix.device.available-flash-kB == 4}}
         env:
           job_sketch_paths: |
             ${{ env.available-flash-4kB-sketch-paths }}
@@ -247,8 +248,8 @@ jobs:
         run: >
           echo "sketch paths: $job_sketch_paths"
 
-      - name: Build sketch-paths >= 2kb
-        if: ${{ matrix.device.available-flash-kB >= 4 }}
+      - name: Build sketch-paths == 2kb
+        if: ${{ matrix.device.available-flash-kB == 2 }}
         env:
           job_sketch_paths: |
             ${{ env.available-flash-2kB-sketch-paths }}
@@ -267,9 +268,9 @@ jobs:
           export job_fqbn=${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m
           echo "job_fqbn=$job_fqbn" >> $GITHUB_ENV
 
-      - name: debug env
+      - name: debug paths
         run: >
-          echo ${{ env.job_fqbn }}
+          echo ${{ env.job_sketch_paths }}
 
       # See: https://github.com/arduino/compile-sketches/README.md
       - name: Compile examples (all default)
