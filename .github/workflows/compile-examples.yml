@@ -64,8 +64,8 @@ jobs:
           # - name: attinyx4:chip=84
           #   available-flash-kB: 8
           #   soft-serial: softserial=txonly
-          # - name: attinyx4:chip=44
-          #   available-flash-kB: 4
+          - name: attinyx4:chip=44
+            available-flash-kB: 4
           #   soft-serial: softserial=enable
           # - name: attinyx4:chip=44
           #   available-flash-kB: 4
@@ -94,8 +94,8 @@ jobs:
           # - name: attinyx5:chip=45
           #   available-flash-kB: 4
           #   soft-serial: softserial=txonly
-          # - name: attinyx5:chip=25
-          #   available-flash-kB: 2
+          - name: attinyx5:chip=25
+            available-flash-kB: 2
           #   soft-serial: softserial=enable
           # - name: attinyx5:chip=25
           #   available-flash-kB: 2
@@ -118,9 +118,9 @@ jobs:
           # - name: attinyx61:chip=261
           #   available-flash-kB: 2
           #   soft-serial: softserial=txonly
-          # - name: attinyx7:chip=167
-          #   available-flash-kB: 16
-          #   soft-serial: ""
+          - name: attinyx7:chip=167
+            available-flash-kB: 16
+            soft-serial: ""
           # - name: attinyx7:chip=87
           #   available-flash-kB: 8
           #   soft-serial: ""
@@ -183,8 +183,7 @@ jobs:
           echo "env: ${{ env[format('available-flash-8kB-sketch-paths-{0}', matrix.device.available-flash-kB  >= 7.5)] }}"
 
       # See: https://github.com/arduino/compile-sketches/README.md
-      - name: Compile examples >= 8kb
-        if: ${{ matrix.device.available-flash-kB >= 8 }}
+      - name: Compile examples
         uses: arduino/compile-sketches@main
         with:
           fqbn: ${{ env.job_fqbn }}
@@ -192,51 +191,6 @@ jobs:
             ${{ env[format('available-flash-8kB-sketch-paths-{0}', matrix.device.available-flash-kB >= 7.5)] }}
             ${{ env[format('available-flash-4kB-sketch-paths-{0}', matrix.device.available-flash-kB >= 4)] }}
             ${{ env[format('available-flash-2kB-sketch-paths-{0}', matrix.device.available-flash-kB >= 2)] }}
-          platforms: |
-            # Install ATTinyCore via Boards Manager for the toolchain
-            - source-url: http://drazzy.com/package_drazzy.com_index.json
-              name: ${{ env.platform-name }}
-            # Overwrite the ATTinyCore release version with the platform from the local path
-            - source-path: avr
-              name: ${{ env.platform-name }}
-          libraries: |
-            # The sketches don't have any external library dependencies, so just define an empty array
-            -
-          verbose: false
-          enable-deltas-report: true
-          enable-warnings-report: true
-          sketches-report-path: sketches-reports
-
-      - name: Compile examples == 4kb
-        if: ${{ matrix.device.available-flash-kB == 4 }}
-        uses: arduino/compile-sketches@main
-        with:
-          fqbn: ${{ env.job_fqbn }}
-          sketch-paths: |
-            ${{ env.available-flash-4kB-sketch-paths }}
-            ${{ env.available-flash-2kB-sketch-paths }}
-          platforms: |
-            # Install ATTinyCore via Boards Manager for the toolchain
-            - source-url: http://drazzy.com/package_drazzy.com_index.json
-              name: ${{ env.platform-name }}
-            # Overwrite the ATTinyCore release version with the platform from the local path
-            - source-path: avr
-              name: ${{ env.platform-name }}
-          libraries: |
-            # The sketches don't have any external library dependencies, so just define an empty array
-            -
-          verbose: false
-          enable-deltas-report: true
-          enable-warnings-report: true
-          sketches-report-path: sketches-reports
-
-      - name: Compile examples == 2kb
-        if: ${{ matrix.device.available-flash-kB == 2 }}
-        uses: arduino/compile-sketches@main
-        with:
-          fqbn: ${{ env.job_fqbn }}
-          sketch-paths: |
-            ${{ env.available-flash-2kB-sketch-paths }}
           platforms: |
             # Install ATTinyCore via Boards Manager for the toolchain
             - source-url: http://drazzy.com/package_drazzy.com_index.json
