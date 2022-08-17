@@ -258,16 +258,16 @@ jobs:
       - name: Build fqbn with soft serial
         if: ${{ matrix.soft-serial != 0 }}
         env:
-          device-fqbn: ${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m,${{ matrix.soft-serial }}
+          job-fqbn: ${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m,${{ matrix.soft-serial }}
         run: >
-          echo "fqbn: $device-fqbn"
+          echo "fqbn: $job-fqbn"
 
       - name: Build fqbn without soft serial
         if: ${{ matrix.soft-serial == 0}}
         env:
-          device-fqbn: ${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m
+          job-fqbn: ${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m
         run: >
-           echo "fqbn: $device-fqbn"
+           echo "fqbn: $job-fqbn"
 
       # See: https://github.com/arduino/compile-sketches/README.md
 
