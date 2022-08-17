@@ -193,17 +193,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Build sketch-paths
-        run: >
-          if [ ${{ matrix.device.available-flash-kB }} -ge 8 ];
-          then
-            echo 'sketch_path=${{ env.available-flash-8kB-sketch-paths }}${{ env.available-flash-4kB-sketch-paths }}${{ env.available-flash-2kB-sketch-paths }}' >> $GITHUB_ENV
-          elif [ ${{ matrix.device.available-flash-kB }} -ge 4 ];
-          then
-            echo 'sketch_path=${{ env.available-flash-4kB-sketch-paths }}${{ env.available-flash-2kB-sketch-paths }}' >> $GITHUB_ENV
-          else
-            echo 'sketch_path=${{ env.available-flash-2kB-sketch-paths }}' >> $GITHUB_ENV
-          fi
+      - name: Build sketch-paths > 8kb
+        if:  ${{ matrix.device.available-flash-kB >= 7.5 }}
+        env:
+          sketch_path: |
+            ${{ env.available-flash-8kB-sketch-paths }}
+            ${{ env.available-flash-4kB-sketch-paths }}
+            ${{ env.available-flash-2kB-sketch-paths }}
 
       # See: https://github.com/arduino/compile-sketches/README.md
 
