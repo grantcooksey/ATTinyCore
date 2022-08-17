@@ -269,7 +269,7 @@ jobs:
 
       - name: Debug matrix
         run: >
-          echo "matrix: ${{ matrix }}"
+          echo "matrix: ${{ toJson(matrix) }}"
 
       # See: https://github.com/arduino/compile-sketches/README.md
       - name: Compile examples >= 8kb
