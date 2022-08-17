@@ -194,6 +194,9 @@ jobs:
             ${{ env[format('available-flash-4kB-sketch-paths-{0}', matrix.device.available-flash-kB >= 4)] }}
             ${{ env[format('available-flash-2kB-sketch-paths-{0}', matrix.device.available-flash-kB >= 2)] }}
           platforms: |
+            # Install ATTinyCore via Boards Manager for the toolchain
+            - source-url: http://drazzy.com/package_drazzy.com_index.json
+              name: ${{ env.platform-name }}
             # Overwrite the ATTinyCore release version with the platform from the local path
             - source-path: avr
               name: ${{ env.platform-name }}
