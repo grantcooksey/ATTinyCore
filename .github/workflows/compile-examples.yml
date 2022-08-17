@@ -81,7 +81,7 @@ jobs:
         #   - attiny43u
         #   - attiny26
         soft-serial:
-          - ",softserial=enable"
+          - "softserial=enable"
         #   - softserial=txonly
 
 
@@ -193,7 +193,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Build sketch-paths > 8kb
+      - name: Build sketch-paths >= 8kb
         if: ${{ matrix.device.available-flash-kB >= 7.5 }}
         env:
           sketch_path: |
@@ -201,14 +201,45 @@ jobs:
             ${{ env.available-flash-4kB-sketch-paths }}
             ${{ env.available-flash-2kB-sketch-paths }}
         run: >
-          echo 'sketch path: $sketch_path'
+          echo "sketch path: $sketch_path"
+
+      - name: Build sketch-paths >= 4kb
+        if: ${{ matrix.device.available-flash-kB >= 4 }}
+        env:
+          sketch_path: |
+            ${{ env.available-flash-4kB-sketch-paths }}
+            ${{ env.available-flash-2kB-sketch-paths }}
+        run: >
+          echo "sketch path: $sketch_path"
+
+      - name: Build sketch-paths >= 2kb
+        if: ${{ matrix.device.available-flash-kB >= 4 }}
+        env:
+          sketch_path: |
+            ${{ env.available-flash-2kB-sketch-paths }}
+        run: >
+          echo "sketch path: $sketch_path"
+
+      - name: Build fqbn with soft serial
+        if: ${{ matrix.soft-serial != 0 }}
+        env:
+          fqbn: ${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m,${{ matrix.soft-serial }}
+        run: >
+          echo "fqbn: $fqbn"
+
+      - name: Build fqbn without soft serial
+        if: ${{ matrix.soft-serial == 0}}
+        env:
+          fqbn: ${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m
+        run: >
+           echo "fqbn: $fqbn"
 
       # See: https://github.com/arduino/compile-sketches/README.md
 
       - name: Compile examples (all default)
         uses: arduino/compile-sketches@main
         with:
-          fqbn: ${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m${{ matrix.soft-serial }}
+          fqbn: ${{ env.fqbn }}
           sketch-paths: |
             ${{ env.sketch_paths }}
           platforms: |
