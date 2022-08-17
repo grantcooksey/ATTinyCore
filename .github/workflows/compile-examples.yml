@@ -43,7 +43,7 @@ jobs:
         - avr/libraries/tinyNeoPixel/examples/strandtest
         - avr/libraries/tinyNeoPixel_Static/examples/buttoncycler
         - avr/libraries/tinyNeoPixel_Static/examples/strandtest
-        # - avr/extras/ci/test_sketches_4k/serial_test
+        - avr/extras/ci/test_sketches_4k/test_serial
       available-flash-8kB-sketch-paths: |
         - avr/libraries/SPI/examples/BarometricPressureSensor
         - avr/libraries/SoftwareSerial/examples/TwoPortReceive
@@ -59,136 +59,109 @@ jobs:
           - name: attinyx4:chip=84
             available-flash-kB: 8
             soft-serial: softserial=enable
-          - name: attinyx4:chip=84
-            available-flash-kB: 8
-            soft-serial: softserial=txonly
-          - name: attinyx4:chip=44
-            available-flash-kB: 4
-            soft-serial: softserial=enable
-          - name: attinyx4:chip=44
-            available-flash-kB: 4
-            soft-serial: softserial=txonly
-          - name: attinyx4:chip=24
-            available-flash-kB: 2
-            soft-serial: softserial=enable
-          - name: attinyx4:chip=24
-            available-flash-kB: 2
-            soft-serial: softserial=txonly
-          - name: attinyx41:chip=841
-            available-flash-kB: 8
-            soft-serial: ""
-          - name: attinyx41:chip=441
-            available-flash-kB: 4
-            soft-serial: ""
-          - name: attinyx5:chip=85
-            available-flash-kB: 8
-            soft-serial: softserial=enable
-          - name: attinyx5:chip=85
-            available-flash-kB: 8
-            soft-serial: softserial=txonly
-          - name: attinyx5:chip=45
-            available-flash-kB: 4
-            soft-serial: softserial=enable
-          - name: attinyx5:chip=45
-            available-flash-kB: 4
-            soft-serial: softserial=txonly
-          - name: attinyx5:chip=25
-            available-flash-kB: 2
-            soft-serial: softserial=enable
-          - name: attinyx5:chip=25
-            available-flash-kB: 2
-            soft-serial: softserial=txonly
-          - name: attinyx61:chip=861
-            available-flash-kB: 8
-            soft-serial: softserial=enable
-          - name: attinyx61:chip=861
-            available-flash-kB: 8
-            soft-serial: softserial=txonly
-          - name: attinyx61:chip=461
-            available-flash-kB: 4
-            soft-serial: softserial=enable
-          - name: attinyx61:chip=461
-            available-flash-kB: 4
-            soft-serial: softserial=txonly
-          - name: attinyx61:chip=261
-            available-flash-kB: 2
-            soft-serial: softserial=enable
-          - name: attinyx61:chip=261
-            available-flash-kB: 2
-            soft-serial: softserial=txonly
-          - name: attinyx7:chip=167
-            available-flash-kB: 16
-            soft-serial: ""
-          - name: attinyx7:chip=87
-            available-flash-kB: 8
-            soft-serial: ""
-          - name: attinyx8:chip=88
-            available-flash-kB: 8
-            soft-serial: softserial=enable
-          - name: attinyx8:chip=88
-            available-flash-kB: 8
-            soft-serial: softserial=txonly
-          - name: attinyx8:chip=48
-            available-flash-kB: 4
-            soft-serial: softserial=enable
-          - name: attinyx8:chip=48
-            available-flash-kB: 4
-            soft-serial: softserial=txonly
-          - name: attiny1634
-            available-flash-kB: 16
-            soft-serial: ""
-          - name: attinyx313:chip=4313
-            available-flash-kB: 4
-            soft-serial: ""
-          - name: attinyx313:chip=2313a
-            available-flash-kB: 2
-            soft-serial: ""
-          - name: attiny828
-            available-flash-kB: 8
-            soft-serial: ""
-          - name: attiny43u
-            available-flash-kB: 4
-            soft-serial: softserial=enable
-          - name: attiny43u
-            available-flash-kB: 4
-            soft-serial: softserial=txonly
-          - name: attiny26
-            available-flash-kB: 2
-            soft-serial: softserial=enable
-          - name: attiny26
-            available-flash-kB: 2
-            soft-serial: softserial=txonly
+          # - name: attinyx4:chip=84
+          #   available-flash-kB: 8
+          #   soft-serial: softserial=txonly
+          # - name: attinyx4:chip=44
+          #   available-flash-kB: 4
+          #   soft-serial: softserial=enable
+          # - name: attinyx4:chip=44
+          #   available-flash-kB: 4
+          #   soft-serial: softserial=txonly
+          # - name: attinyx4:chip=24
+          #   available-flash-kB: 2
+          #   soft-serial: softserial=enable
+          # - name: attinyx4:chip=24
+          #   available-flash-kB: 2
+          #   soft-serial: softserial=txonly
+          # - name: attinyx41:chip=841
+          #   available-flash-kB: 8
+          #   soft-serial: ""
+          # - name: attinyx41:chip=441
+          #   available-flash-kB: 4
+          #   soft-serial: ""
+          # - name: attinyx5:chip=85
+          #   available-flash-kB: 8
+          #   soft-serial: softserial=enable
+          # - name: attinyx5:chip=85
+          #   available-flash-kB: 8
+          #   soft-serial: softserial=txonly
+          # - name: attinyx5:chip=45
+          #   available-flash-kB: 4
+          #   soft-serial: softserial=enable
+          # - name: attinyx5:chip=45
+          #   available-flash-kB: 4
+          #   soft-serial: softserial=txonly
+          # - name: attinyx5:chip=25
+          #   available-flash-kB: 2
+          #   soft-serial: softserial=enable
+          # - name: attinyx5:chip=25
+          #   available-flash-kB: 2
+          #   soft-serial: softserial=txonly
+          # - name: attinyx61:chip=861
+          #   available-flash-kB: 8
+          #   soft-serial: softserial=enable
+          # - name: attinyx61:chip=861
+          #   available-flash-kB: 8
+          #   soft-serial: softserial=txonly
+          # - name: attinyx61:chip=461
+          #   available-flash-kB: 4
+          #   soft-serial: softserial=enable
+          # - name: attinyx61:chip=461
+          #   available-flash-kB: 4
+          #   soft-serial: softserial=txonly
+          # - name: attinyx61:chip=261
+          #   available-flash-kB: 2
+          #   soft-serial: softserial=enable
+          # - name: attinyx61:chip=261
+          #   available-flash-kB: 2
+          #   soft-serial: softserial=txonly
+          # - name: attinyx7:chip=167
+          #   available-flash-kB: 16
+          #   soft-serial: ""
+          # - name: attinyx7:chip=87
+          #   available-flash-kB: 8
+          #   soft-serial: ""
+          # - name: attinyx8:chip=88
+          #   available-flash-kB: 8
+          #   soft-serial: softserial=enable
+          # - name: attinyx8:chip=88
+          #   available-flash-kB: 8
+          #   soft-serial: softserial=txonly
+          # - name: attinyx8:chip=48
+          #   available-flash-kB: 4
+          #   soft-serial: softserial=enable
+          # - name: attinyx8:chip=48
+          #   available-flash-kB: 4
+          #   soft-serial: softserial=txonly
+          # - name: attiny1634
+          #   available-flash-kB: 16
+          #   soft-serial: ""
+          # - name: attinyx313:chip=4313
+          #   available-flash-kB: 4
+          #   soft-serial: ""
+          # - name: attinyx313:chip=2313a
+          #   available-flash-kB: 2
+          #   soft-serial: ""
+          # - name: attiny828
+          #   available-flash-kB: 8
+          #   soft-serial: ""
+          # - name: attiny43u
+          #   available-flash-kB: 4
+          #   soft-serial: softserial=enable
+          # - name: attiny43u
+          #   available-flash-kB: 4
+          #   soft-serial: softserial=txonly
+          # - name: attiny26
+          #   available-flash-kB: 2
+          #   soft-serial: softserial=enable
+          # - name: attiny26
+          #   available-flash-kB: 2
+          #   soft-serial: softserial=txonly
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      # - name: Build sketch-paths >= 8kb
-      #   if: ${{ matrix.device.available-flash-kB >= 8 }}
-      #   env:
-      #     job_sketch_paths: |
-      #       ${{ env.available-flash-8kB-sketch-paths }}
-      #       ${{ env.available-flash-4kB-sketch-paths }}
-      #       ${{ env.available-flash-2kB-sketch-paths }}
-      #   run: >
-      #     echo "sketch paths: $job_sketch_paths"
-
-      # - name: Build sketch-paths == 4kb
-      #   if: ${{ matrix.device.available-flash-kB == 4}}
-      #   env:
-      #     job_sketch_paths: |
-      #       ${{ env.available-flash-4kB-sketch-paths }}
-      #       ${{ env.available-flash-2kB-sketch-paths }}
-      #   run: >
-      #     echo "sketch paths: $job_sketch_paths"
-
-      # - name: Build sketch-paths == 2kb
-      #   if: ${{ matrix.device.available-flash-kB == 2 }}
-      #   env:
-      #     job_sketch_paths: |
-      #       ${{ env.available-flash-2kB-sketch-paths }}
-      #   run: >
-      #     echo "sketch paths: $job_sketch_paths"
 
       - name: Build fqbn with soft serial
         if: ${{ matrix.device.soft-serial != 0 }}
@@ -202,9 +175,10 @@ jobs:
           export job_fqbn=${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m
           echo "job_fqbn=$job_fqbn" >> $GITHUB_ENV
 
-      - name: Debug matrix
-        run: >
-          echo "matrix: ${{ toJson(matrix) }}"
+      - name: Debug
+        run: |
+          echo "format: ${{ format('available-flash-{0}kB-sketch-paths', matrix.device.available-flash-kB) }}"
+          echo "env: ${{ env[format('available-flash-{0}kB-sketch-paths', matrix.device.available-flash-kB)] }}"
 
       # See: https://github.com/arduino/compile-sketches/README.md
       - name: Compile examples >= 8kb
