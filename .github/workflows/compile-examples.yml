@@ -177,10 +177,10 @@ jobs:
           export job_fqbn=${{ env.platform-name }}:${{ matrix.device.name }},clock=internal_8m
           echo "job_fqbn=$job_fqbn" >> $GITHUB_ENV
 
-      # - name: Debug
-      #   run: |
-      #     echo "format: ${{ format('available-flash-{0}kB-sketch-paths', matrix.device.available-flash-kB) }}"
-      #     echo "env: ${{ env[format('available-flash-{0}kB-sketch-paths', matrix.device.available-flash-kB)] }}"
+      - name: Debug
+        run: |
+          echo "format: ${{ format('available-flash-8kB-sketch-paths-{0}', matrix.device.available-flash-kB  >= 7.5) }}"
+          echo "env: ${{ env[format('available-flash-8kB-sketch-paths-{0}', matrix.device.available-flash-kB  >= 7.5)] }}"
 
       # See: https://github.com/arduino/compile-sketches/README.md
       - name: Compile examples >= 8kb
