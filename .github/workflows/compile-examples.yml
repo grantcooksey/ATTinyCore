@@ -198,7 +198,7 @@ jobs:
           if [ ${{ matrix.device.available-flash-kB }} -ge 8 ];
           then
             echo 'sketch_path=${{ env.available-flash-8kB-sketch-paths }}${{ env.available-flash-4kB-sketch-paths }}${{ env.available-flash-2kB-sketch-paths }}' >> $GITHUB_ENV
-          elif [ ${{ matrix.device.available-flash-kB }} -ge 4 ]
+          elif [ ${{ matrix.device.available-flash-kB }} -ge 4 ];
           then
             echo 'sketch_path=${{ env.available-flash-4kB-sketch-paths }}${{ env.available-flash-2kB-sketch-paths }}' >> $GITHUB_ENV
           else

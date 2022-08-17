@@ -1,8 +1,6 @@
 #! /bin/bash
-echo "sketch_paths=\"$(
-    if [ 8 -ge 8 ];
-    then
-      echo '- avr/libraries/SPI/examples/BarometricPressureSensor
+if [ 8 -ge 8 ]; then
+    echo 'sketch_path=- avr/libraries/SPI/examples/BarometricPressureSensor
   - avr/libraries/SoftwareSerial/examples/TwoPortReceive
   - avr/libraries/Wire/examples/SFRRanger_reader
   - avr/libraries/tinyNeoPixel/examples/RGBWstrandtest
@@ -21,9 +19,8 @@ echo "sketch_paths=\"$(
   - avr/extras/ci/test_sketches_4k/serial_test
   - avr/extras/ci/test_sketches_2k/basic_test
   '
-    elif [ matrix.device.available-flash-kB -ge 4 ]
-    then
-      echo '- avr/libraries/EEPROM/examples/eeprom_crc
+  elif [ 8 -ge 4 ]; then
+    echo 'sketch_path=- avr/libraries/EEPROM/examples/eeprom_crc
   - avr/libraries/EEPROM/examples/eeprom_put
   - avr/libraries/EEPROM/examples/eeprom_read
   - avr/libraries/Wire/examples/digital_potentiometer
@@ -37,8 +34,7 @@ echo "sketch_paths=\"$(
   - avr/extras/ci/test_sketches_4k/serial_test
   - avr/extras/ci/test_sketches_2k/basic_test
   '
-    else
-      echo '- avr/extras/ci/test_sketches_2k/basic_test
+  else
+    echo 'sketch_path=- avr/extras/ci/test_sketches_2k/basic_test
   '
-    fi
-  )\""
+  fi
